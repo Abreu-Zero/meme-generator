@@ -14,6 +14,7 @@ struct Meme {
     let originalImage: UIImage
     let memedImage: UIImage
 }
+
 class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     // MARK: Outlets, vars and lets
@@ -28,7 +29,7 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
     
     var activeTextField : UITextField? = nil
     var pickerHeightVisible: CGFloat!
-    var meme: Meme?
+    //var meme: Meme?
     
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         NSAttributedString.Key.strokeColor: UIColor.black,
@@ -184,11 +185,10 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         
         shareController.completionWithItemsHandler = {(activity: UIActivity.ActivityType?, completed: Bool,  _: [Any]?, error: Error?) in
             if completed{
-                self.meme = Meme(topText: self.textFieldTop.text!, bottomText: self.textFieldBottom.text!, originalImage: self.imageView.image!, memedImage: self.generateMemedImage())
+                let meme = Meme(topText: self.textFieldTop.text!, bottomText: self.textFieldBottom.text!, originalImage: self.imageView.image!, memedImage: self.generateMemedImage())
                 
-                let object = UIApplication.shared.delegate
-                let appDelegate = object as! AppDelegate
-                appDelegate.memes.append(self.meme!)
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.memes.append(meme)
             }
 
         }
