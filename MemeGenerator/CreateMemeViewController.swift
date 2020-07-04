@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CreateMemeViewController.swift
 //  MemeGenerator
 //
 //  Created by Henrique Abreu on 29/06/2020.
@@ -14,7 +14,7 @@ struct Meme {
     let originalImage: UIImage
     let memedImage: UIImage
 }
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     // MARK: Outlets, vars and lets
     
@@ -43,6 +43,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         setTextFieldMemeAtributes(textFieldTop)
         setTextFieldMemeAtributes(textFieldBottom)
         shareButton.isEnabled = false
+        self.tabBarController?.tabBar.isHidden = true
+
     }
     
     func setTextFieldMemeAtributes(_ tf : UITextField){
