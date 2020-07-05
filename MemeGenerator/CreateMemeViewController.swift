@@ -47,7 +47,7 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         shareButton.isEnabled = false
         self.tabBarController?.tabBar.isHidden = true
         
-        if let _ = edit as? Bool{
+        if edit ?? false{
             imageView.image = meme?.originalImage
             textFieldTop.text = meme?.topText
             textFieldBottom.text = meme?.bottomText
@@ -144,7 +144,7 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         imagePicker.delegate = self
         imagePicker.sourceType = source
         present(imagePicker, animated: true, completion: nil)
-        edit = false
+        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -186,14 +186,13 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
     //MARK: MEME funcs
     
     @IBAction func saveAndShare() {
-            // Create the meme
-        
-        
+                
         //calling activityVC
         let shareController = UIActivityViewController(activityItems: [generateMemedImage()], applicationActivities: [])
         
         shareController.completionWithItemsHandler = {(activity: UIActivity.ActivityType?, completed: Bool,  _: [Any]?, error: Error?) in
             if completed{
+                //if completed, save meme
                 let meme = Meme(topText: self.textFieldTop.text!, bottomText: self.textFieldBottom.text!, originalImage: self.imageView.image!, memedImage: self.generateMemedImage())
                 
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate

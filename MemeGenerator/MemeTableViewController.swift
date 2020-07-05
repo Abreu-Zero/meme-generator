@@ -12,9 +12,14 @@ import UIKit
 
 class MemeTableViewController: UITableViewController {
     
-    var memes: [Meme] {
-       return (UIApplication.shared.delegate as! AppDelegate).memes
-   }
+    // getting meme data from appDelegate
+    var memes: [Meme]! {
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        return appDelegate.memes
+    }
+    
+    // MARK: view funcs
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +31,7 @@ class MemeTableViewController: UITableViewController {
 
     }
 
+    //MARK: table funcs
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -47,6 +53,8 @@ class MemeTableViewController: UITableViewController {
         
         return cell
     }
+    
+    //MARK: segue funcs
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if segue.identifier == "tableSegue"{
