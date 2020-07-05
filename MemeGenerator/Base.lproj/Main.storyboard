@@ -101,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3113" y="-57"/>
+            <point key="canvasLocation" x="2601" y="-145"/>
         </scene>
         <!--Meme Collection View Controller-->
         <scene sceneID="Yd8-Kb-zzx">
@@ -163,29 +163,10 @@
             <point key="canvasLocation" x="1568.8" y="160.56971514242881"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="BV3-rv-A7V">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hHm-ej-FCB" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="COd-oP-xVs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EZa-y6-l7k"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ij1-1X-wyU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2364" y="-57"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="pmq-sa-4jK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sFc-OJ-WeY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" selectedImage="rectangle.grid.1x2.fill" catalog="system" id="GNH-4t-4Us"/>
+                    <tabBarItem key="tabBarItem" selectedImage="square.and.arrow.up.on.square.fill" catalog="system" id="GNH-4t-4Us"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Tkh-rw-0x0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -324,11 +305,11 @@
             </objects>
             <point key="canvasLocation" x="1568.8" y="-505.09745127436287"/>
         </scene>
-        <!--Item 2-->
+        <!--Navigation Controller-->
         <scene sceneID="DRn-sU-5aD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x74-iy-rMb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" selectedImage="rectangle.grid.2x2.fill" catalog="system" id="E7o-k0-qMj"/>
+                    <tabBarItem key="tabBarItem" selectedImage="rectangle.grid.2x2.fill" catalog="system" systemItem="more" id="E7o-k0-qMj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ow2-WP-vZk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -348,7 +329,7 @@
         <segue reference="nBL-fI-Unu"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="rectangle.grid.1x2.fill" catalog="system" width="128" height="101"/>
         <image name="rectangle.grid.2x2.fill" catalog="system" width="128" height="99"/>
+        <image name="square.and.arrow.up.on.square.fill" catalog="system" width="117" height="128"/>
     </resources>
 </document>

@@ -54,18 +54,22 @@ class MemeCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if segue.identifier == "collectionSegue"{
              
-             if let indexPath = collectionView.indexPath(for: ){
-                 let memeS = self.memes[indexPath.row]
-                 let viewDestination = segue.destination as! CreateMemeViewController
-                 viewDestination.meme = memeS
+             if let cell = sender as? UICollectionViewCell{
+                
+                let indexPath = self.collectionView!.indexPath(for: cell)
+                let memeS = self.memes[indexPath!.row]
+                let viewDestination = segue.destination as! CreateMemeViewController
+                viewDestination.meme = memeS
                 viewDestination.edit = true
                  
              }
          }
-     }*/
+        
+        
+     }
     
     
 
