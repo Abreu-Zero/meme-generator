@@ -166,7 +166,7 @@
         <scene sceneID="pmq-sa-4jK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sFc-OJ-WeY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" selectedImage="square.and.arrow.up.on.square.fill" catalog="system" id="GNH-4t-4Us"/>
+                    <tabBarItem key="tabBarItem" image="list.dash" catalog="system" selectedImage="list.dash" id="GNH-4t-4Us"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Tkh-rw-0x0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -309,7 +309,7 @@
         <scene sceneID="DRn-sU-5aD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x74-iy-rMb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" selectedImage="rectangle.grid.2x2.fill" catalog="system" systemItem="more" id="E7o-k0-qMj"/>
+                    <tabBarItem key="tabBarItem" image="square.grid.3x2.fill" catalog="system" selectedImage="square.grid.3x2.fill" id="E7o-k0-qMj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ow2-WP-vZk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -329,7 +329,7 @@
         <segue reference="nBL-fI-Unu"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="rectangle.grid.2x2.fill" catalog="system" width="128" height="99"/>
-        <image name="square.and.arrow.up.on.square.fill" catalog="system" width="117" height="128"/>
+        <image name="list.dash" catalog="system" width="128" height="85"/>
+        <image name="square.grid.3x2.fill" catalog="system" width="128" height="80"/>
     </resources>
 </document>
