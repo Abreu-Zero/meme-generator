@@ -29,7 +29,8 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
     
     var activeTextField : UITextField? = nil
     var pickerHeightVisible: CGFloat!
-    //var meme: Meme?
+    var meme: Meme?
+    var edit: Bool?
     
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         NSAttributedString.Key.strokeColor: UIColor.black,
@@ -45,6 +46,13 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         setTextFieldMemeAtributes(textFieldBottom)
         shareButton.isEnabled = false
         self.tabBarController?.tabBar.isHidden = true
+        
+        if let _ = edit as? Bool{
+            imageView.image = meme?.originalImage
+            textFieldTop.text = meme?.topText
+            textFieldBottom.text = meme?.bottomText
+            shareButton.isEnabled = true
+        }
 
     }
     
@@ -136,6 +144,7 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         imagePicker.delegate = self
         imagePicker.sourceType = source
         present(imagePicker, animated: true, completion: nil)
+        edit = false
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

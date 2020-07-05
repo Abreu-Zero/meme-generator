@@ -48,6 +48,18 @@ class MemeTableViewController: UITableViewController {
         return cell
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         if segue.identifier == "tableSegue"{
+             
+             if let indexPath = tableView.indexPathForSelectedRow{
+                 let memeS = self.memes[indexPath.row]
+                 let viewDestination = segue.destination as! CreateMemeViewController
+                 viewDestination.meme = memeS
+                 viewDestination.edit = true
+                 
+             }
+         }
+     }
     
         
     

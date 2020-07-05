@@ -10,6 +10,8 @@ import UIKit
 
 class MemeCollectionViewController: UICollectionViewController {
 
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
@@ -18,6 +20,13 @@ class MemeCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let space:CGFloat = 3.0
+            let dimension = (view.frame.size.width - (2 * space)) / 3.0
+
+            flowLayout.minimumInteritemSpacing = space
+            flowLayout.minimumLineSpacing = space
+            flowLayout.itemSize = CGSize(width: dimension, height: dimension)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +53,21 @@ class MemeCollectionViewController: UICollectionViewController {
         
         return cell
     }
+    
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         if segue.identifier == "collectionSegue"{
+             
+             if let indexPath = collectionView.indexPath(for: ){
+                 let memeS = self.memes[indexPath.row]
+                 let viewDestination = segue.destination as! CreateMemeViewController
+                 viewDestination.meme = memeS
+                viewDestination.edit = true
+                 
+             }
+         }
+     }*/
+    
+    
 
     
 
