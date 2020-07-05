@@ -21,19 +21,17 @@ class MemeCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let space:CGFloat = 3.0
-            let dimension = (view.frame.size.width - (2 * space)) / 3.0
+        let dimension = (view.frame.size.width - (2 * space)) / 3.0
 
-            flowLayout.minimumInteritemSpacing = space
-            flowLayout.minimumLineSpacing = space
-            flowLayout.itemSize = CGSize(width: dimension, height: dimension)
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.minimumLineSpacing = space
+        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
         collectionView.reloadData()
-
-
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
