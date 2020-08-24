@@ -6,30 +6,40 @@
 //  Copyright © 2020 Henrique Abreu. All rights reserved.
 //
 
-import UIKit
-
+import CoreData
 import UIKit
 
 class MemeTableViewController: UITableViewController {
     
     var dataController: DataController?
-    // getting meme data from appDelegate
-    var memes: [Meme]! {
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        return appDelegate.memes
-    }
+    var memes: [Meme] = []
     
     // MARK: view funcs
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadSavedImages()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
         self.tabBarController?.tabBar.isHidden = false
 
+    }
+    
+    //MARK: load memes
+    
+    func loadSavedImages(){
+                
+        let fetchRequest : NSFetchRequest<Meme> = Meme.fetchRequest()
+        
+        guard let result = try? dataController?.viewContext.fetch(fetchRequest) else{return}
+        memes = result
+        print("saved data count:" + String(memes.count))
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 
     //MARK: table funcs
@@ -50,7 +60,8 @@ class MemeTableViewController: UITableViewController {
         
         cell.topText.text = meme.topText
         cell.bottomText.text = meme.bottomText
-        cell.memeImageView.image = meme.memedImage
+        let img = UIImage(data: meme.memedImage!, scale:1.0)
+        cell.memeImageView.image = img
         
         return cell
     }
