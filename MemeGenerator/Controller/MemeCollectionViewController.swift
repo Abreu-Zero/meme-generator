@@ -16,7 +16,7 @@ class MemeCollectionViewController: UICollectionViewController {
     // getting meme data from appDelegate
     var memes: [Meme] = []
     var dataController: DataController?
-    
+    //FIXME: fix the injection here!!!
     // MARK: view funcs
     
     override func viewDidLoad() {

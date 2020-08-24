@@ -16,6 +16,8 @@ class UITabBarViewController: UITabBarController {
         super.viewDidLoad()
         //dataController.load()
         
+        //TODO: Fix this injection
+        
         let memeTable = viewControllers![0] as! MemeTableViewController
         //memeTable.dataController = dataController
         let memeCol = viewControllers![1] as! MemeCollectionViewController

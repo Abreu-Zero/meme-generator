@@ -13,6 +13,7 @@ class MemeTableViewController: UITableViewController {
     
     let dataController = DataController(modelName: "MemeGenerator")
     var memes: [Meme] = []
+    //FIXME: fix the reload memes!
     
     // MARK: view funcs
     
