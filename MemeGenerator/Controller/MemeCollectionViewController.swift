@@ -7,17 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class MemeCollectionViewController: UICollectionViewController {
 
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     // getting meme data from appDelegate
-    var memes: [Meme]! {
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        return appDelegate.memes
-    }
+    var memes: [Meme] = []
+    var dataController: DataController?
     
     // MARK: view funcs
     
@@ -31,12 +29,29 @@ class MemeCollectionViewController: UICollectionViewController {
         flowLayout.minimumLineSpacing = space
         flowLayout.itemSize = CGSize(width: dimension, height: dimension)
         
+        loadSavedImages()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         //reloading data and seting tabbar to appear again
         self.tabBarController?.tabBar.isHidden = false
         collectionView.reloadData()
+    }
+    
+    //MARK: load memes
+        
+    func loadSavedImages(){
+                
+        let fetchRequest : NSFetchRequest<Meme> = Meme.fetchRequest()
+        
+        guard let result = try? dataController?.viewContext.fetch(fetchRequest) else{return}
+        memes = result
+        print("saved data count:" + String(memes.count))
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
     // MARK: col funcs
@@ -54,8 +69,8 @@ class MemeCollectionViewController: UICollectionViewController {
 
         let meme = memes[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "memeCollectionCell", for: indexPath) as! MemeCollectionCell
-
-        cell.memeImageView.image = meme.memedImage
+         let img = UIImage(data: meme.memedImage!, scale:1.0)
+        cell.memeImageView.image = img
         
         return cell
     }
@@ -74,9 +89,18 @@ class MemeCollectionViewController: UICollectionViewController {
                 let viewDestination = segue.destination as! CreateMemeViewController
                 viewDestination.meme = memeS
                 viewDestination.edit = true
+                viewDestination.dataController = dataController
+
                  
              }
+            
          }
+        
+        if segue.identifier == "addSegue"{
+            let viewDestination = segue.destination as! CreateMemeViewController
+            viewDestination.edit = false
+            viewDestination.dataController = dataController
+        }
         
         
      }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
@@ -24,6 +25,7 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
     var pickerHeightVisible: CGFloat!
     var meme: Meme?
     var edit: Bool?
+    var dataController: DataController?
     
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         NSAttributedString.Key.strokeColor: UIColor.black,
@@ -41,7 +43,8 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         self.tabBarController?.tabBar.isHidden = true
         
         if edit ?? false{
-            imageView.image = meme?.originalImage
+            let img = UIImage(data: meme!.image!, scale:1.0)
+            imageView.image = img
             textFieldTop.text = meme?.topText
             textFieldBottom.text = meme?.bottomText
             shareButton.isEnabled = true
@@ -186,10 +189,14 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         shareController.completionWithItemsHandler = {(activity: UIActivity.ActivityType?, completed: Bool,  _: [Any]?, error: Error?) in
             if completed{
                 //if completed, save meme
-                let meme = Meme(topText: self.textFieldTop.text!, bottomText: self.textFieldBottom.text!, originalImage: self.imageView.image!, memedImage: self.generateMemedImage())
                 
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.memes.append(meme)
+                let newMeme = Meme(context: self.dataController!.viewContext)
+                newMeme.image = self.imageView.image?.pngData()
+                newMeme.topText = self.textFieldTop.text!
+                newMeme.bottomText = self.textFieldBottom.text!
+                newMeme.memedImage = self.generateMemedImage().pngData()
+                newMeme.creationDate = Date()
+                try? self.dataController?.viewContext.save()
             }
 
         }

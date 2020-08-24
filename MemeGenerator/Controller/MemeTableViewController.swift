@@ -11,12 +11,13 @@ import UIKit
 
 class MemeTableViewController: UITableViewController {
     
-    var dataController: DataController?
+    let dataController = DataController(modelName: "MemeGenerator")
     var memes: [Meme] = []
     
     // MARK: view funcs
     
     override func viewDidLoad() {
+        dataController.load()
         super.viewDidLoad()
         loadSavedImages()
     }
@@ -33,7 +34,7 @@ class MemeTableViewController: UITableViewController {
                 
         let fetchRequest : NSFetchRequest<Meme> = Meme.fetchRequest()
         
-        guard let result = try? dataController?.viewContext.fetch(fetchRequest) else{return}
+        guard let result = try? dataController.viewContext.fetch(fetchRequest) else{return}
         memes = result
         print("saved data count:" + String(memes.count))
         
@@ -72,13 +73,19 @@ class MemeTableViewController: UITableViewController {
          if segue.identifier == "tableSegue"{
              
              if let indexPath = tableView.indexPathForSelectedRow{
-                 let memeS = self.memes[indexPath.row]
-                 let viewDestination = segue.destination as! CreateMemeViewController
-                 viewDestination.meme = memeS
-                 viewDestination.edit = true
+                let memeS = self.memes[indexPath.row]
+                let viewDestination = segue.destination as! CreateMemeViewController
+                viewDestination.meme = memeS
+                viewDestination.edit = true
+                viewDestination.dataController = dataController
                  
              }
          }
+        if segue.identifier == "addSegue"{
+            let viewDestination = segue.destination as! CreateMemeViewController
+            viewDestination.edit = false
+            viewDestination.dataController = dataController
+        }
      }
     
         
