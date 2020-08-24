@@ -12,6 +12,7 @@ import UIKit
 
 class MemeTableViewController: UITableViewController {
     
+    var dataController: DataController?
     // getting meme data from appDelegate
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
