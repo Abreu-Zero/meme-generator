@@ -25,6 +25,8 @@ class MemeTableViewController: UITableViewController{
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
         self.tabBarController?.tabBar.isHidden = false
+        loadSavedImages()
+
 
     }
     

@@ -36,6 +36,7 @@ class MemeCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         //reloading data and seting tabbar to appear again
         self.tabBarController?.tabBar.isHidden = false
+        loadSavedImages()
         collectionView.reloadData()
     }
     
