@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class MemeCollectionViewController: UICollectionViewController {
-
+    
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     // getting meme data from appDelegate
@@ -109,4 +109,10 @@ class MemeCollectionViewController: UICollectionViewController {
 
     
 
+}
+
+extension MemeCollectionViewController: DataControllerProtocol{
+    func setDataContoller(dataController: DataController) {
+        self.dataController = dataController
+    }
 }

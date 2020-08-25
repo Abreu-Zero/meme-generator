@@ -9,16 +9,15 @@
 import CoreData
 import UIKit
 
-class MemeTableViewController: UITableViewController {
+class MemeTableViewController: UITableViewController{
     
-    let dataController = DataController(modelName: "MemeGenerator")
+    var dataController: DataController?
     var memes: [Meme] = []
     //FIXME: fix the reload memes!
     
     // MARK: view funcs
     
     override func viewDidLoad() {
-        dataController.load()
         super.viewDidLoad()
         loadSavedImages()
     }
@@ -35,7 +34,7 @@ class MemeTableViewController: UITableViewController {
                 
         let fetchRequest : NSFetchRequest<Meme> = Meme.fetchRequest()
         
-        guard let result = try? dataController.viewContext.fetch(fetchRequest) else{return}
+        guard let result = try? dataController?.viewContext.fetch(fetchRequest) else{return}
         memes = result
         print("saved data count:" + String(memes.count))
         
@@ -92,4 +91,10 @@ class MemeTableViewController: UITableViewController {
         
     
 
+}
+
+extension MemeTableViewController: DataControllerProtocol{
+    func setDataContoller(dataController: DataController) {
+        self.dataController = dataController
+    }
 }
