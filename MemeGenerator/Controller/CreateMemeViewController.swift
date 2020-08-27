@@ -123,15 +123,10 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
 
     // MARK: Image Funcs
     //pickImage checks from photos app, pickImageFromCamera well, picks it from the camera baby
-    @IBAction func pickImage(_ sender: Any) {
-        wichPicker(.photoLibrary)
-        
-    }
     
-    @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        wichPicker(.camera)
-        
-     }
+    @IBAction func pickImage(_ sender: Any) {wichPicker(.photoLibrary)}
+    
+    @IBAction func pickAnImageFromCamera(_ sender: Any) {wichPicker(.camera)}
     
     func wichPicker(_ source : UIImagePickerController.SourceType){
         // changes the sourceType between camera and photos app
@@ -140,7 +135,6 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         imagePicker.delegate = self
         imagePicker.sourceType = source
         present(imagePicker, animated: true, completion: nil)
-        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -189,7 +183,10 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         shareController.completionWithItemsHandler = {(activity: UIActivity.ActivityType?, completed: Bool,  _: [Any]?, error: Error?) in
             if completed{
                 //if completed, save meme
-                
+                //needs to delete old meme if is editing!!
+                if self.edit ?? false{
+                    self.dataController?.viewContext.delete(self.meme!)
+                }
                 let newMeme = Meme(context: self.dataController!.viewContext)
                 newMeme.image = self.imageView.image?.pngData()
                 newMeme.topText = self.textFieldTop.text!
