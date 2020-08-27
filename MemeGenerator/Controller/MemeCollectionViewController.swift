@@ -22,7 +22,7 @@ class MemeCollectionViewController: UICollectionViewController, DataControllerPr
         super.viewDidLoad()        
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         //reloading data and seting tabbar to appear again
         self.tabBarController?.tabBar.isHidden = false
         loadSavedImages()
