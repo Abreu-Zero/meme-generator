@@ -9,31 +9,20 @@
 import UIKit
 import CoreData
 
-class MemeCollectionViewController: UICollectionViewController {
+class MemeCollectionViewController: UICollectionViewController, DataControllerProtocol {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
-    // getting meme data from appDelegate
     var memes: [Meme] = []
     var dataController: DataController?
-    //FIXME: fix the injection here!!!
+    
     // MARK: view funcs
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        let space:CGFloat = 3.0
-        let dimension = (view.frame.size.width - (2 * space)) / 3.0
-
-        //setting flowLayout properties
-        flowLayout.minimumInteritemSpacing = space
-        flowLayout.minimumLineSpacing = space
-        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
-        
-        loadSavedImages()
-        
+        super.viewDidLoad()        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         //reloading data and seting tabbar to appear again
         self.tabBarController?.tabBar.isHidden = false
         loadSavedImages()
@@ -55,11 +44,11 @@ class MemeCollectionViewController: UICollectionViewController {
         }
     }
     
-    // MARK: col funcs
-    
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+    func setDataContoller(dataController: DataController) {
+        self.dataController = dataController
     }
+    
+    // MARK: col funcs
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return memes.count
@@ -91,8 +80,6 @@ class MemeCollectionViewController: UICollectionViewController {
                 viewDestination.meme = memeS
                 viewDestination.edit = true
                 viewDestination.dataController = dataController
-
-                 
              }
             
          }
@@ -102,18 +89,5 @@ class MemeCollectionViewController: UICollectionViewController {
             viewDestination.edit = false
             viewDestination.dataController = dataController
         }
-        
-        
      }
-    
-    
-
-    
-
-}
-
-extension MemeCollectionViewController: DataControllerProtocol{
-    func setDataContoller(dataController: DataController) {
-        self.dataController = dataController
-    }
 }
