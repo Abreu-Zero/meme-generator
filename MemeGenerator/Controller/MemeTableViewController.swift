@@ -9,17 +9,15 @@
 import CoreData
 import UIKit
 
-class MemeTableViewController: UITableViewController{
+class MemeTableViewController: UITableViewController, DataControllerProtocol{
     
     var dataController: DataController?
     var memes: [Meme] = []
-    //FIXME: fix the reload memes!
     
     // MARK: view funcs
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSavedImages()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -30,7 +28,7 @@ class MemeTableViewController: UITableViewController{
 
     }
     
-    //MARK: load memes
+    //MARK: protocol funcs
     
     func loadSavedImages(){
                 
@@ -44,12 +42,12 @@ class MemeTableViewController: UITableViewController{
             self.tableView.reloadData()
         }
     }
+    
+    func setDataContoller(dataController: DataController) {
+        self.dataController = dataController
+    }
 
     //MARK: table funcs
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memes.count
@@ -89,14 +87,5 @@ class MemeTableViewController: UITableViewController{
             viewDestination.dataController = dataController
         }
      }
-    
-        
-    
-
 }
 
-extension MemeTableViewController: DataControllerProtocol{
-    func setDataContoller(dataController: DataController) {
-        self.dataController = dataController
-    }
-}

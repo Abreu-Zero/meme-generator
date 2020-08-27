@@ -10,4 +10,5 @@ import Foundation
 
 protocol DataControllerProtocol{
     func setDataContoller(dataController: DataController)
+    func loadSavedImages()
 }
