@@ -40,6 +40,7 @@
 		9999515224B0EC300051F9E1 /* MemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeTableViewController.swift; sourceTree = "<group>"; };
 		9999515424B10CD80051F9E1 /* MemeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewController.swift; sourceTree = "<group>"; };
 		9999515624B10DE20051F9E1 /* MemeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCollectionCell.swift; sourceTree = "<group>"; };
+		99CF3E7624F7B9BB00B53CD7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +90,7 @@
 		998A298A24AA809D008163F3 = {
 			isa = PBXGroup;
 			children = (
+				99CF3E7624F7B9BB00B53CD7 /* README.md */,
 				998A299524AA809D008163F3 /* MemeGenerator */,
 				998A299424AA809D008163F3 /* Products */,
 			);
