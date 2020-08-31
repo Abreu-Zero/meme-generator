@@ -33,6 +33,8 @@ class MemeTableViewController: UITableViewController, DataControllerProtocol{
     func loadSavedImages(){
                 
         let fetchRequest : NSFetchRequest<Meme> = Meme.fetchRequest()
+        let sortDescription = NSSortDescriptor(key: "creationDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescription]
         
         guard let result = try? dataController?.viewContext.fetch(fetchRequest) else{return}
         memes = result
